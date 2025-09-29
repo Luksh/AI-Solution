@@ -1,0 +1,166 @@
+{% extends "admin/index.html" %}
+{% block content %}
+
+
+    <title>Analytics</title>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS for Dashboard -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .chart-container {
+            margin: 20px 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analytics</h1>
+
+        <!-- Inquiries by Status -->
+        <div class="chart-container">
+            <div class="chart-title">Inquiries by Status</div>
+            <canvas id="inquiriesByStatusChart"></canvas>
+        </div>
+
+        <!-- Inquiries by Country -->
+        <div class="chart-container">
+            <div class="chart-title">Inquiries by Country</div>
+            <canvas id="inquiriesByCountryChart"></canvas>
+        </div>
+
+        <!-- Inquiries Over Time -->
+        <div class="chart-container">
+            <div class="chart-title">Inquiries Over Time</div>
+            <canvas id="inquiriesOverTimeChart"></canvas>
+        </div>
+
+        <!-- Registrations by Event -->
+        <div class="chart-container">
+            <div class="chart-title">Registrations by Event</div>
+            <canvas id="registrationsByEventChart"></canvas>
+        </div>
+
+        <!-- Projects by Status -->
+        <div class="chart-container">
+            <div class="chart-title">Projects by Status</div>
+            <canvas id="projectsByStatusChart"></canvas>
+        </div>
+    </div>
+
+    <!-- JavaScript to Render Charts -->
+    <script>
+        // Pass Django context data to JavaScript
+        const inquiriesByStatus = JSON.parse('{{ inquiries_by_status|safe }}');
+        const inquiriesByCountry = JSON.parse('{{ inquiries_by_country|safe }}');
+        const inquiriesOverTime = JSON.parse('{{ inquiries_over_time|safe }}');
+        const registrationsByEvent = JSON.parse('{{ registrations_by_event|safe }}');
+        const projectsByStatus = JSON.parse('{{ projects_by_status|safe }}');
+
+        // Render Inquiries by Status Chart
+        const inquiriesByStatusCtx = document.getElementById('inquiriesByStatusChart').getContext('2d');
+        new Chart(inquiriesByStatusCtx, {
+            type: 'pie',
+            data: {
+                labels: inquiriesByStatus.map(item => item.status),
+                datasets: [{
+                    data: inquiriesByStatus.map(item => item.count),
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
+                }]
+            },
+        });
+
+        // Render Inquiries by Country Chart
+        const inquiriesByCountryCtx = document.getElementById('inquiriesByCountryChart').getContext('2d');
+        new Chart(inquiriesByCountryCtx, {
+            type: 'bar',
+            data: {
+                labels: inquiriesByCountry.map(item => item.country),
+                datasets: [{
+                    label: 'Inquiries',
+                    data: inquiriesByCountry.map(item => item.count),
+                    backgroundColor: '#36a2eb',
+                }]
+            },
+        });
+
+        // Render Inquiries Over Time Chart
+        const inquiriesOverTimeCtx = document.getElementById('inquiriesOverTimeChart').getContext('2d');
+        new Chart(inquiriesOverTimeCtx, {
+            type: 'line',
+            data: {
+                labels: inquiriesOverTime.map(item => new Date(item.day).toLocaleDateString()),
+                datasets: [{
+                    label: 'Inquiries',
+                    data: inquiriesOverTime.map(item => item.count),
+                    borderColor: '#ff6384',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true,
+                }]
+            },
+        });
+
+        // Render Registrations by Event Chart
+        const registrationsByEventCtx = document.getElementById('registrationsByEventChart').getContext('2d');
+        new Chart(registrationsByEventCtx, {
+            type: 'doughnut',
+            data: {
+                labels: registrationsByEvent.map(item => item.event__title),
+                datasets: [{
+                    data: registrationsByEvent.map(item => item.count),
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'],
+                }]
+            },
+        });
+
+        // Render Projects by Status Chart
+        const projectsByStatusCtx = document.getElementById('projectsByStatusChart').getContext('2d');
+        new Chart(projectsByStatusCtx, {
+            type: 'bar',
+            data: {
+                labels: projectsByStatus.map(item => item.status),
+                datasets: [{
+                    label: 'Projects',
+                    data: projectsByStatus.map(item => item.count),
+                    backgroundColor: '#4bc0c0',
+                }]
+            },
+        });
+    </script>
+
+    {% endblock %}

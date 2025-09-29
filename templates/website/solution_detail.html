@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load website_extras %}
+
+{% block title %}{{ solution.title }} - AI-Solution{% endblock %}
+
+{% block content %}
+<!-- Solution Hero Section -->
+<section class="hero-section text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="{% url 'website:home' %}" class="text-white-50">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'website:solutions' %}" class="text-white-50">Solutions</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">{{ solution.title }}</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 fw-bold">{{ solution.title }}</h1>
+                <p class="lead">{{ solution.description|truncatewords:30 }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solution Details -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Main Content -->
+                <div class="mb-5">
+                    <h2 class="section-title mb-4">Overview</h2>
+                    <p class="lead mb-4">{{ solution.description }}</p>
+                    
+                    {% if solution.image %}
+                    <div class="solution-image mb-4">
+                        <img src="{{ solution.image.url }}" alt="{{ solution.title }}" class="img-fluid rounded shadow-sm">
+                    </div>
+                    {% endif %}
+                    
+                    <h2 class="section-title mb-4 mt-5">Key Features</h2>
+                    <div class="features-list">
+                        {% with features_list=solution.features|split:',' %}
+                            {% for feature in features_list %}
+                            <div class="feature-item d-flex align-items-start mb-4">
+                                <div class="feature-icon me-3">
+                                    <i class="fas fa-check-circle text-primary fa-2x"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>{{ feature|title }}</h4>
+                                    <p>Our {{ solution.title }} provides advanced {{ feature|lower }} capabilities to help your business thrive in today's competitive landscape.</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </div>
+                
+                <!-- Benefits Section -->
+                <div class="benefits-section bg-light p-4 rounded shadow-sm mb-5">
+                    <h2 class="section-title mb-4">Benefits</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="benefit-item">
+                                <i class="fas fa-chart-line text-primary fa-2x mb-3"></i>
+                                <h4>Increased Efficiency</h4>
+                                <p>Streamline your operations and reduce manual workload.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="benefit-item">
+                                <i class="fas fa-coins text-primary fa-2x mb-3"></i>
+                                <h4>Cost Reduction</h4>
+                                <p>Lower operational costs through intelligent automation.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="benefit-item">
+                                <i class="fas fa-lightbulb text-primary fa-2x mb-3"></i>
+                                <h4>Actionable Insights</h4>
+                                <p>Gain valuable data-driven insights for better decision making.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="benefit-item">
+                                <i class="fas fa-users text-primary fa-2x mb-3"></i>
+                                <h4>Enhanced User Experience</h4>
+                                <p>Provide better experiences for both customers and employees.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Implementation Process -->
+                <div class="mb-5">
+                    <h2 class="section-title mb-4">Implementation Process</h2>
+                    <div class="implementation-timeline">
+                        <div class="timeline-item d-flex">
+                            <div class="timeline-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">1</div>
+                            <div class="timeline-content mb-4">
+                                <h4>Consultation & Assessment</h4>
+                                <p>We begin with a thorough assessment of your current processes and requirements.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item d-flex">
+                            <div class="timeline-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">2</div>
+                            <div class="timeline-content mb-4">
+                                <h4>Customized Solution Design</h4>
+                                <p>Our experts design a tailored solution that addresses your specific needs.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item d-flex">
+                            <div class="timeline-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">3</div>
+                            <div class="timeline-content mb-4">
+                                <h4>Implementation & Integration</h4>
+                                <p>We seamlessly implement the solution and integrate it with your existing systems.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item d-flex">
+                            <div class="timeline-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">4</div>
+                            <div class="timeline-content mb-4">
+                                <h4>Training & Support</h4>
+                                <p>Comprehensive training and ongoing support ensure maximum value from your investment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Section -->
+                <div class="cta-section bg-primary text-white p-5 rounded shadow">
+                    <h2 class="mb-3">Ready to transform your business with {{ solution.title }}?</h2>
+                    <p class="lead mb-4">Contact us today to schedule a consultation and discover how our solution can address your specific needs.</p>
+                    <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Get in Touch</a>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <!-- Quick Info Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Quick Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="fas fa-tag text-primary me-3"></i>
+                                <span><strong>Solution Type:</strong> AI-Powered Software</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="fas fa-clock text-primary me-3"></i>
+                                <span><strong>Implementation Time:</strong> 4-6 Weeks</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="fas fa-cogs text-primary me-3"></i>
+                                <span><strong>Customization:</strong> Available</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="fas fa-headset text-primary me-3"></i>
+                                <span><strong>Support:</strong> 24/7 Technical Support</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Request Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Interested in learning more about {{ solution.title }}? Fill out this form and one of our experts will contact you.</p>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Email Address">
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Phone Number">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="3" placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Send Request</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Other Solutions -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Other Solutions</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            {% for other_solution in other_solutions %}
+                            <li class="list-group-item">
+                                <a href="{% url 'website:solution_detail' other_solution.slug %}" class="text-decoration-none">
+                                    <div class="d-flex align-items-center">
+                                        {% if other_solution.image %}
+                                        <img src="{{ other_solution.image.url }}" alt="{{ other_solution.title }}" class="me-3 rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                        {% else %}
+                                        <div class="bg-light me-3 rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <i class="fas fa-laptop-code text-primary"></i>
+                                        </div>
+                                        {% endif %}
+                                        <div>
+                                            <h6 class="mb-0">{{ other_solution.title }}</h6>
+                                            <small class="text-muted">{{ other_solution.description|truncatewords:5 }}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Case Studies -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Related Case Studies</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">TechGiant Customer Support Transformation</h5>
+                        <p class="card-text">How our AI solution helped TechGiant reduce response times by 65% and increase customer satisfaction.</p>
+                        <a href="#" class="btn btn-outline-primary">Read Case Study</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">HealthPlus Medical Center</h5>
+                        <p class="card-text">Implementing AI to optimize patient scheduling and resource allocation, reducing wait times by 45%.</p>
+                        <a href="#" class="btn btn-outline-primary">Read Case Study</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Global Finance Group</h5>
+                        <p class="card-text">How our AI security system detected and prevented fraud attempts, saving millions in potential losses.</p>
+                        <a href="#" class="btn btn-outline-primary">Read Case Study</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .timeline-number {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+    
+    .feature-icon {
+        color: #3498DB;
+    }
+    
+    .benefit-item {
+        padding: 20px;
+        border-radius: 5px;
+        background-color: white;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+    
+    .benefit-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .implementation-timeline .timeline-item:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 40px;
+        bottom: 0;
+        width: 2px;
+        background-color: #e9ecef;
+        height: calc(100% - 40px);
+    }
+    
+    .implementation-timeline {
+        position: relative;
+        padding-left: 20px;
+    }
+    
+    .hero-section {
+        background: linear-gradient(to right, #2C3E50, #3498DB);
+    }
+    
+    .section-title {
+        position: relative;
+        padding-bottom: 15px;
+        color: #2C3E50;
+    }
+    
+    .section-title:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 3px;
+        background-color: #3498DB;
+    }
+</style>
+{% endblock %}

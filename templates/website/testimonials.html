@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Testimonials - AI-Solution{% endblock %}
+
+{% block content %}
+<!-- Testimonials Header -->
+<section class="hero-section text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4">Client Testimonials</h1>
+        <p class="lead">What our clients say about our AI-powered solutions</p>
+    </div>
+</section>
+
+<!-- Testimonials Overview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title">Our Clients' Success Stories</h2>
+                <p class="lead">At AI-Solution, we measure our success by the satisfaction of our clients. Here's what they have to say about working with us.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Grid -->
+<section class="bg-gray py-5">
+    <div class="container">
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            {% if testimonial.image %}
+                            <img src="{{ testimonial.image.url }}" class="rounded-circle" width="100" height="100" alt="{{ testimonial.customer_name }}">
+                            {% else %}
+                            <img src="{% static 'images/testimonial-placeholder.jpg' %}" class="rounded-circle" width="100" height="100" alt="{{ testimonial.customer_name }}">
+                            {% endif %}
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= testimonial.rating %}
+                                <i class="fas fa-star"></i>
+                                {% else %}
+                                <i class="far fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="card-text fst-italic mb-4">"{{ testimonial.testimonial }}"</p>
+                        <h5 class="card-title mb-1">{{ testimonial.customer_name }}</h5>
+                        <p class="text-muted">{{ testimonial.position }}, {{ testimonial.company }}</p>
+                        <p class="text-muted small">
+                            <i class="far fa-calendar-alt me-1"></i> {{ testimonial.date|date:"F Y" }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <p class="mb-0">No testimonials available at the moment. Check back soon!</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Clients -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Companies That Trust Us</h2>
+            <p class="lead">We've worked with businesses of all sizes across various industries</p>
+        </div>
+        
+        <div class="row text-center">
+            <div class="col-md-2 col-6 mb-4">
+                <div class="client-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <p class="mt-2">Tech Corp</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="client-icon">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <p class="mt-2">Health Systems</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="client-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <p class="mt-2">Finance Group</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="client-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <p class="mt-2">Retail Solutions</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="client-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <p class="mt-2">Education Ltd</p>
+            </div>
+            <div class="col-md-2 col-6 mb-4">
+                <div class="client-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <p class="mt-2">Travel Tech</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-accent text-white py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Join Our Satisfied Clients?</h2>
+        <p class="lead mb-4">Contact us today to discuss how our AI-powered solutions can help your business.</p>
+        <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Get in Touch</a>
+    </div>
+</section>
+{% endblock %}

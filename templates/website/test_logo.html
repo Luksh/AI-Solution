@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Logo Test{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Logo Test Page</h1>
+            <p>Testing if the logo is accessible:</p>
+            
+            <div class="mt-4">
+                <h3>Direct img tag:</h3>
+                <img src="{% static 'img/admin/logo2.png' %}" alt="Logo Test" height="100">
+            </div>
+            
+            <div class="mt-4">
+                <h3>File path info:</h3>
+                <p>Static URL: {{ STATIC_URL }}</p>
+                <p>Full path should be: {{ STATIC_URL }}img/admin/logo2.png</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

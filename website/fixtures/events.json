@@ -1,0 +1,114 @@
+[
+  {
+    "model": "website.event",
+    "pk": 1,
+    "fields": {
+      "title": "AI Innovation Summit 2024",
+      "description": "Join us for our annual AI Innovation Summit where industry leaders and AI experts will share insights on the latest advancements in artificial intelligence and their practical applications in business. The event will feature keynote speeches, panel discussions, interactive workshops, and networking opportunities.",
+      "date": "2024-06-15T09:00:00Z",
+      "location": "Tech Convention Center, New York",
+      "image": "events/ai_summit_2024.jpg",
+      "registration_link": "https://aisolution.com/events/ai-summit-2024",
+      "is_featured": true,
+      "is_upcoming": true
+    }
+  },
+  {
+    "model": "website.event",
+    "pk": 2,
+    "fields": {
+      "title": "Healthcare AI Symposium",
+      "description": "This specialized symposium focuses on the transformative potential of AI in healthcare. Medical professionals, technology innovators, and policy experts will discuss the latest developments in medical imaging analysis, predictive diagnostics, personalized medicine, and ethical considerations in healthcare AI.",
+      "date": "2024-07-20T10:00:00Z",
+      "location": "Medical Research Center, Boston",
+      "image": "events/healthcare_ai_symposium.jpg",
+      "registration_link": "https://aisolution.com/events/healthcare-ai-2024",
+      "is_featured": true,
+      "is_upcoming": true
+    }
+  },
+  {
+    "model": "website.event",
+    "pk": 3,
+    "fields": {
+      "title": "AI in Finance Masterclass",
+      "description": "This intensive masterclass will explore how AI is reshaping the financial services industry. Topics include fraud detection, algorithmic trading, risk assessment, customer service automation, and regulatory compliance. Designed for financial professionals looking to leverage AI in their organizations.",
+      "date": "2024-08-10T13:00:00Z",
+      "location": "Financial District Conference Center, Chicago",
+      "image": "events/finance_ai_masterclass.jpg",
+      "registration_link": "https://aisolution.com/events/finance-ai-masterclass",
+      "is_featured": false,
+      "is_upcoming": true
+    }
+  },
+  {
+    "model": "website.event",
+    "pk": 4,
+    "fields": {
+      "title": "Supply Chain AI Workshop",
+      "description": "This hands-on workshop will demonstrate how AI can optimize supply chain operations. Participants will learn about demand forecasting, inventory optimization, logistics planning, and disruption management through practical exercises and real-world case studies.",
+      "date": "2024-09-05T09:30:00Z",
+      "location": "Logistics Innovation Hub, Seattle",
+      "image": "events/supply_chain_workshop.jpg",
+      "registration_link": "https://aisolution.com/events/supply-chain-workshop",
+      "is_featured": false,
+      "is_upcoming": true
+    }
+  },
+  {
+    "model": "website.event",
+    "pk": 5,
+    "fields": {
+      "title": "AI Ethics Forum",
+      "description": "This important forum brings together ethicists, technologists, policy makers, and business leaders to discuss the ethical implications of AI. Topics include bias in AI systems, privacy concerns, transparency, accountability, and developing ethical frameworks for AI development and deployment.",
+      "date": "2024-10-12T11:00:00Z",
+      "location": "University Conference Center, San Francisco",
+      "image": "events/ai_ethics_forum.jpg",
+      "registration_link": "https://aisolution.com/events/ai-ethics-forum",
+      "is_featured": true,
+      "is_upcoming": true
+    }
+  },
+  {
+    "model": "website.event",
+    "pk": 6,
+    "fields": {
+      "title": "Retail AI Conference",
+      "description": "This conference focuses on AI applications in the retail industry. Sessions will cover customer experience personalization, inventory management, visual merchandising, demand forecasting, and omnichannel optimization. Retail executives and technology leaders will share success stories and lessons learned.",
+      "date": "2023-11-18T10:00:00Z",
+      "location": "Retail Innovation Center, Dallas",
+      "image": "events/retail_ai_conference.jpg",
+      "registration_link": "https://aisolution.com/events/retail-ai-conference",
+      "is_featured": false,
+      "is_upcoming": false
+    }
+  },
+  {
+    "model": "website.event",
+    "pk": 7,
+    "fields": {
+      "title": "Manufacturing AI Expo",
+      "description": "This expo showcases the latest AI technologies transforming the manufacturing sector. Exhibits and presentations will highlight predictive maintenance, quality control automation, production optimization, and smart factory solutions. Includes demonstrations of real-world implementations.",
+      "date": "2023-09-25T09:00:00Z",
+      "location": "Industrial Technology Center, Detroit",
+      "image": "events/manufacturing_ai_expo.jpg",
+      "registration_link": "https://aisolution.com/events/manufacturing-ai-expo",
+      "is_featured": false,
+      "is_upcoming": false
+    }
+  },
+  {
+    "model": "website.event",
+    "pk": 8,
+    "fields": {
+      "title": "AI Developer Conference",
+      "description": "A technical conference for AI developers, data scientists, and engineers. Sessions will cover machine learning frameworks, neural network architectures, computer vision algorithms, NLP techniques, and best practices for AI model development, training, and deployment.",
+      "date": "2024-11-08T08:30:00Z",
+      "location": "Developer Hub, Austin",
+      "image": "events/developer_conference.jpg",
+      "registration_link": "https://aisolution.com/events/ai-developer-conference",
+      "is_featured": true,
+      "is_upcoming": true
+    }
+  }
+]

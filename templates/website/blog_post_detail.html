@@ -1,0 +1,291 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_extras %}
+
+{% block title %}{{ post.title }} - AI-Solution Blog{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="bg-light py-2">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'website:home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'website:blog' %}">Blog</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Blog Post Header -->
+<section class="py-5 bg-gradient">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-4">
+                    <span class="badge bg-primary mb-2 px-3 py-2">{{ post.get_category_display }}</span>
+                    <h1 class="display-4 mb-3">{{ post.title }}</h1>
+                    <div class="d-flex justify-content-center align-items-center text-muted">
+                        <div class="me-3">
+                            <i class="fas fa-user me-1"></i> {{ post.author }}
+                        </div>
+                        <div class="me-3">
+                            <i class="far fa-calendar me-1"></i> {{ post.created_at|date:"F d, Y" }}
+                        </div>
+                        <div>
+                            <i class="far fa-clock me-1"></i> {{ post.content|wordcount|divide:250|floatformat:0 }} min read
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Image -->
+{% if post.featured_image %}
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="featured-image-container position-relative">
+                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded shadow w-100" style="max-height: 500px; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Blog Post Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-md-5">
+                        <div class="blog-content">
+                            {{ post.content|linebreaks }}
+                        </div>
+                        
+                        <!-- Tags -->
+                        {% if post_tags %}
+                        <div class="mt-5 pt-4 border-top">
+                            <h5 class="mb-3">Tags</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for tag in post_tags %}
+                                <a href="{% url 'website:blog' %}?tag={{ tag }}" class="badge bg-light text-dark text-decoration-none p-2">{{ tag }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Share -->
+                        <div class="mt-4 pt-4 border-top">
+                            <h5 class="mb-3">Share This Article</h5>
+                            <div class="d-flex gap-2">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}" target="_blank" class="btn btn-outline-primary">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ post.title }}" target="_blank" class="btn btn-outline-primary">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="mailto:?subject={{ post.title }}&body=Check out this article: {{ request.build_absolute_uri }}" class="btn btn-outline-primary">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Author Bio -->
+                        <div class="mt-4 pt-4 border-top">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="bg-primary rounded-circle p-3 text-white">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <h5 class="mb-1">{{ post.author }}</h5>
+                                    <p class="mb-0 text-muted">AI Technology Expert</p>
+                                </div>
+                            </div>
+                            <p class="mt-3">
+                                {{ post.author }} is a technology expert specializing in artificial intelligence and machine learning solutions for businesses. With years of experience in the field, they provide valuable insights into the latest AI trends and applications.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Posts -->
+                {% if related_posts %}
+                <h3 class="mb-4">Related Articles</h3>
+                <div class="row g-4">
+                    {% for related in related_posts %}
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="position-relative">
+                                {% if related.featured_image %}
+                                <img src="{{ related.featured_image.url }}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;">
+                                {% else %}
+                                <img src="{% static 'images/blog-placeholder.jpg' %}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;">
+                                {% endif %}
+                                <div class="position-absolute top-0 end-0 bg-primary text-white px-2 py-1 rounded-bottom-start">
+                                    {{ related.get_category_display }}
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ related.title }}</h5>
+                                <p class="card-text small text-muted">{{ related.created_at|date:"M d, Y" }}</p>
+                                <a href="{% url 'website:blog_post_detail' related.slug %}" class="btn btn-sm btn-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <!-- Comments Section -->
+                <div class="card border-0 shadow-sm mt-5">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Leave a Comment</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment" class="form-label">Comment</label>
+                                <textarea class="form-control" id="comment" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Categories -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Categories</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for key, value in all_categories.items %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <a href="{% url 'website:blog' %}?category={{ key }}" class="text-decoration-none {% if post.category == key %}text-primary fw-bold{% endif %}">{{ value }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Recent Posts -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Recent Posts</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for recent in recent_posts %}
+                            <li class="list-group-item px-0">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        {% if recent.featured_image %}
+                                        <img src="{{ recent.featured_image.url }}" alt="{{ recent.title }}" class="rounded" width="60" height="60" style="object-fit: cover;">
+                                        {% else %}
+                                        <img src="{% static 'images/blog-placeholder.jpg' %}" alt="{{ recent.title }}" class="rounded" width="60" height="60" style="object-fit: cover;">
+                                        {% endif %}
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-1">
+                                            <a href="{% url 'website:blog_post_detail' recent.slug %}" class="text-decoration-none">{{ recent.title }}</a>
+                                        </h6>
+                                        <p class="text-muted small mb-0">
+                                            <i class="far fa-calendar-alt me-1"></i> {{ recent.created_at|date:"M d, Y" }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Tags -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Popular Tags</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for tag in all_tags %}
+                            <a href="{% url 'website:blog' %}?tag={{ tag }}" class="badge bg-light text-dark text-decoration-none p-2">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Subscribe</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Stay updated with our latest articles and news.</p>
+                        <form>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email Address">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to transform your business with AI?</h2>
+        <p class="lead mb-4">Let's discuss how our solutions can address your specific challenges</p>
+        <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Contact Us Today</a>
+    </div>
+</section>
+
+<!-- Custom Template Filters -->
+<script>
+    // This is a workaround since we can't add custom template filters in this context
+    document.addEventListener('DOMContentLoaded', function() {
+        // Replace category codes with display names
+        const categoryMappings = {
+            'ai_technology': 'AI Technology',
+            'machine_learning': 'Machine Learning',
+            'data_science': 'Data Science',
+            'business_intelligence': 'Business Intelligence',
+            'industry_insights': 'Industry Insights',
+            'case_studies': 'Case Studies',
+            'company_news': 'Company News'
+        };
+        
+        document.querySelectorAll('[data-category]').forEach(element => {
+            const categoryCode = element.getAttribute('data-category');
+            if (categoryMappings[categoryCode]) {
+                element.textContent = categoryMappings[categoryCode];
+            }
+        });
+    });
+</script>
+{% endblock %}

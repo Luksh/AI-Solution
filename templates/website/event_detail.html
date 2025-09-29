@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ event.title }} - AI-Solution{% endblock %}
+
+{% block extra_css %}
+<style>
+    .event-header {
+        position: relative;
+        background-color: #f8f9fa;
+        overflow: hidden;
+    }
+    
+    .event-header-img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    
+    .event-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+    }
+    
+    .event-date-badge {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 1rem;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .event-date-badge .month {
+        font-size: 1rem;
+        text-transform: uppercase;
+        margin-bottom: -5px;
+    }
+    
+    .event-date-badge .day {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    
+    .event-date-badge .time {
+        font-size: 0.9rem;
+    }
+    
+    .event-info-card {
+        border-radius: 5px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        height: 100%;
+    }
+    
+    .related-event-card {
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 8px;
+        overflow: hidden;
+        height: 100%;
+    }
+    
+    .related-event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Event Header -->
+<section class="event-header">
+    {% if event.image %}
+    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-header-img">
+    {% else %}
+    <img src="{% static 'images/event-placeholder.jpg' %}" alt="{{ event.title }}" class="event-header-img">
+    {% endif %}
+    
+    <div class="event-overlay">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 text-white mb-3">{{ event.title }}</h1>
+                    <div class="d-flex align-items-center text-white mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span>{{ event.location }}</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        <span>{{ event.date|date:"F d, Y - h:i A" }}</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
+                    {% if event.is_upcoming %}
+                    <div class="d-inline-block">
+                        {% if event.registration_link %}
+                        <button class="btn btn-accent btn-lg register-btn" data-bs-toggle="modal" data-bs-target="#registerModal" data-event-id="{{ event.id }}" data-event-title="{{ event.title }}">Register Now</button>
+                        {% else %}
+                        <button class="btn btn-outline-light btn-lg" disabled>Registration Coming Soon</button>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="badge bg-secondary p-3">Event Completed</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content Container - Wrap all content sections -->
+<div class="main-content-wrapper">
+    <!-- Event Details -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">About This Event</h2>
+                            <div class="event-description">
+                                {{ event.description|linebreaks }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% if event.is_upcoming %}
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">Why Attend?</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-lightbulb text-primary fa-2x me-3"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Learn from Experts</h5>
+                                            <p>Gain insights from industry leaders and AI specialists.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Other attendance benefits -->
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="event-info-card bg-white mb-4">
+                        <h3 class="mb-4">Event Details</h3>
+                        
+                        <div class="mb-4 text-center">
+                            <div class="event-date-badge mx-auto">
+                                <div class="month">{{ event.date|date:"M" }}</div>
+                                <div class="day">{{ event.date|date:"d" }}</div>
+                                <div class="time">{{ event.date|date:"h:i A" }}</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event details content -->
+                    </div>
+                    
+                    <div class="event-info-card bg-white">
+                        <h3 class="mb-3">Share This Event</h3>
+                        <div class="d-flex justify-content-center">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="btn btn-outline-primary mx-1" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ event.title }}" class="btn btn-outline-info mx-1" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://wa.me/?text={{ event.title }} {{ request.build_absolute_uri }}" class="btn btn-outline-success mx-1" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="mailto:?subject={{ event.title }}&body={{ request.build_absolute_uri }}" class="btn btn-outline-secondary mx-1">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Events -->
+    {% if related_events %}
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Related Events</h2>
+            
+            <div class="row">
+                {% for related in related_events %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card related-event-card shadow h-100">
+                        <!-- Related event content -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</div><!-- End of main-content-wrapper -->
+
+<!-- Event Registration Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <!-- Modal content -->
+</div>
+{% endblock %}

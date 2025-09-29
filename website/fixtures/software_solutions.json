@@ -1,0 +1,74 @@
+[
+  {
+    "model": "website.softwaresolution",
+    "pk": 1,
+    "fields": {
+      "title": "AI-Powered Predictive Analytics",
+      "description": "Our predictive analytics solution leverages machine learning algorithms to analyze historical data and forecast future trends with remarkable accuracy. This enables businesses to make data-driven decisions and stay ahead of market changes.",
+      "features": "Advanced forecasting algorithms, Interactive dashboards, Anomaly detection, Automated reporting, Custom alert systems, Data integration from multiple sources",
+      "image": "solutions/predictive_analytics.jpg",
+      "created_at": "2023-01-15T10:30:00Z",
+      "updated_at": "2023-06-10T14:20:00Z"
+    }
+  },
+  {
+    "model": "website.softwaresolution",
+    "pk": 2,
+    "fields": {
+      "title": "Computer Vision Solutions",
+      "description": "Our computer vision platform enables businesses to extract valuable insights from images and video streams. From quality control in manufacturing to security surveillance and retail analytics, our solution transforms visual data into actionable intelligence.",
+      "features": "Object detection and recognition, Facial recognition, Defect detection, Motion analysis, OCR capabilities, Real-time processing, Edge computing support",
+      "image": "solutions/computer_vision.jpg",
+      "created_at": "2023-02-05T09:15:00Z",
+      "updated_at": "2023-07-12T11:45:00Z"
+    }
+  },
+  {
+    "model": "website.softwaresolution",
+    "pk": 3,
+    "fields": {
+      "title": "Natural Language Processing Platform",
+      "description": "Our NLP platform helps businesses understand and leverage textual data at scale. From sentiment analysis of customer feedback to automated document processing, our solution transforms unstructured text into structured, actionable insights.",
+      "features": "Sentiment analysis, Entity recognition, Text classification, Language translation, Chatbot integration, Custom language models, Multi-language support",
+      "image": "solutions/nlp_platform.jpg",
+      "created_at": "2023-03-10T13:45:00Z",
+      "updated_at": "2023-08-05T16:30:00Z"
+    }
+  },
+  {
+    "model": "website.softwaresolution",
+    "pk": 4,
+    "fields": {
+      "title": "Intelligent Process Automation",
+      "description": "Our intelligent process automation solution combines RPA with AI to automate complex business processes. By mimicking human actions and making intelligent decisions, our solution reduces operational costs and improves efficiency across departments.",
+      "features": "Workflow automation, Document processing, Decision intelligence, Integration with existing systems, Visual process designer, Performance analytics, Exception handling",
+      "image": "solutions/process_automation.jpg",
+      "created_at": "2023-04-20T11:20:00Z",
+      "updated_at": "2023-09-15T10:10:00Z"
+    }
+  },
+  {
+    "model": "website.softwaresolution",
+    "pk": 5,
+    "fields": {
+      "title": "AI-Enhanced Customer Experience",
+      "description": "Our customer experience platform uses AI to personalize interactions across all touchpoints. By analyzing customer behavior and preferences, our solution delivers tailored experiences that increase satisfaction, loyalty, and lifetime value.",
+      "features": "Personalization engine, Customer journey mapping, Omnichannel integration, Behavioral analytics, A/B testing capabilities, Recommendation systems, Voice of customer analysis",
+      "image": "solutions/customer_experience.jpg",
+      "created_at": "2023-05-12T15:30:00Z",
+      "updated_at": "2023-10-08T09:25:00Z"
+    }
+  },
+  {
+    "model": "website.softwaresolution",
+    "pk": 6,
+    "fields": {
+      "title": "Intelligent Supply Chain Management",
+      "description": "Our supply chain solution uses AI to optimize inventory, logistics, and procurement processes. By predicting demand fluctuations and identifying potential disruptions, our platform ensures operational resilience and cost efficiency.",
+      "features": "Demand forecasting, Inventory optimization, Route optimization, Supplier performance analysis, Risk assessment, What-if scenario planning, Real-time tracking",
+      "image": "solutions/supply_chain.jpg",
+      "created_at": "2023-06-25T08:45:00Z",
+      "updated_at": "2023-11-20T14:15:00Z"
+    }
+  }
+]

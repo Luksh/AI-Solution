@@ -1,0 +1,140 @@
+
+{% comment %} {% extends "admin/base.html" %} {% endcomment %}
+{% load static %}
+
+<link rel="shortcut icon" href="{% static 'images/logo2.png' %}">
+
+{% block content %}
+<div class="login-container">
+    <div class="login-box">
+        <div class="brand-header">
+            <img src="{% static '/images/logo2.png' %}" alt="AI Solution Logo" class="login-logo">
+            
+            <h1>AI Solution Admin</h1>
+        </div>
+        
+        {% if form.errors %}
+        <div class="error-message">
+            Invalid username or password
+        </div>
+        {% endif %}
+        
+        <form method="post" id="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</div>
+
+<style>
+:root {
+    --primary: #2c3e50;
+    --primary-light: #34495e;
+    --secondary: #34495e;
+    --accent: #17a2b8;
+    --accent-light: #3498db;
+    --text: #ecf0f1;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+}
+
+.login-box {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.brand-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-logo {
+    width: auto;
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+.brand-header h1 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-button:hover {
+    background: var(--accent-light);
+}
+
+.error-message {
+    background: #ffe6e6;
+    color: #d63031;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+</style>
+{% endblock %}

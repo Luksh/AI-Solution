@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AI-Solution - Innovative AI-Powered Software Solutions{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">Transforming Digital Experiences with AI</h1>
+                <p class="lead">AI-Solution leverages artificial intelligence to assist various industries with software solutions that rapidly address issues impacting the digital employee experience.</p>
+                <div class="mt-4">
+                    <a href="{% url 'website:solutions' %}" class="btn btn-light btn-lg me-3">Our Solutions</a>
+                    <a href="{% url 'website:contact' %}" class="btn btn-outline-light btn-lg">Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/hero.jpg' %}" alt="AI Solutions" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{% static 'images/hero.jpg' %}" alt="AI Solutions" class="img-fluid rounded shadow-lg">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="section-title">About AI-Solution</h2>
+                <p class="lead">We are a fictitious start-up company based in Sunderland that's changing the game in digital employee experience.</p>
+                <p>AI-Solutions has distinguished itself by integrating an AI-powered virtual assistant that responds to users' inquiries and provides AI-based, affordable prototyping solutions. This unique selling point sets us apart from competitors and is sure to pique customer's interest.</p>
+                <p>Our mission is to innovate, promote, and deliver the future of the digital employee experience, with a strong focus on supporting people at work. This commitment is at the core of our global expansion and aims to make a worldwide impact.</p>
+                <div class="mt-4">
+                    <a href="{% url 'website:case_studies' %}" class="btn btn-primary">See Our Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Solutions -->
+<section class="bg-gray py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Software Solutions</h2>
+            <p class="lead">Discover how our AI-powered solutions can transform your business</p>
+        </div>
+        <div class="row">
+            {% for solution in solutions %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    {% if solution.image %}
+                    <img src="{{ solution.image.url }}" class="card-img-top" alt="{{ solution.title }}">
+                    {% else %}
+                    <img src="{% static 'images/solution-placeholder.jpg' %}" class="card-img-top" alt="{{ solution.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ solution.title }}</h5>
+                        <p class="card-text">{{ solution.description|truncatewords:30 }}</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="{% url 'website:solutions' %}" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No solutions available at the moment. Check back soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'website:solutions' %}" class="btn btn-primary">View All Solutions</a>
+        </div>
+    </div>
+</section>
+
+<!-- Case Studies -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Case Studies</h2>
+            <p class="lead">See how we've helped businesses solve real-world problems</p>
+        </div>
+        <div class="row">
+            {% for case in case_studies %}
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            {% if case.image %}
+                            <img src="{{ case.image.url }}" class="img-fluid rounded-start h-100" alt="{{ case.title }}">
+                            {% else %}
+                            <img src="{% static 'images/case-study-placeholder.jpg' %}" class="img-fluid rounded-start h-100" alt="{{ case.title }}">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ case.title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ case.client_name }} - {{ case.industry }}</h6>
+                                <p class="card-text">{{ case.challenge|truncatewords:20 }}</p>
+                                <a href="{% url 'website:case_studies' %}" class="btn btn-sm btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No case studies available at the moment. Check back soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'website:case_studies' %}" class="btn btn-primary">View All Case Studies</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="bg-gray py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="lead">Hear from businesses that have experienced our solutions</p>
+        </div>
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            {% if testimonial.image %}
+                            <img src="{{ testimonial.image.url }}" class="rounded-circle" width="80" height="80" alt="{{ testimonial.customer_name }}">
+                            {% else %}
+                            <img src="{% static 'images/testimonial-placeholder.jpg' %}" class="rounded-circle" width="80" height="80" alt="{{ testimonial.customer_name }}">
+                            {% endif %}
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= testimonial.rating %}
+                                <i class="fas fa-star"></i>
+                                {% else %}
+                                <i class="far fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="card-text fst-italic">"{{ testimonial.testimonial|truncatewords:25 }}"</p>
+                        <h5 class="card-title mb-1">{{ testimonial.customer_name }}</h5>
+                        <p class="card-subtitle text-muted">{{ testimonial.position }}, {{ testimonial.company }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No testimonials available at the moment. Check back soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'website:testimonials' %}" class="btn btn-primary">View All Testimonials</a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Events -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Upcoming Events</h2>
+            <p class="lead">Join us at these upcoming events to learn more about our solutions</p>
+        </div>
+        <div class="row">
+            {% for event in featured_events %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    {% if event.image %}
+                    <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                    {% else %}
+                    <img src="{% static 'images/event-placeholder.jpg' %}" class="card-img-top" alt="{{ event.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">
+                            <i class="far fa-calendar-alt me-2 text-accent"></i>{{ event.date|date:"F d, Y - h:i A" }}<br>
+                            <i class="fas fa-map-marker-alt me-2 text-accent"></i>{{ event.location }}
+                        </p>
+                        <p class="card-text">{{ event.description|truncatewords:20 }}</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        {% if event.registration_link %}
+                        <a href="{{ event.registration_link }}" class="btn btn-accent" target="_blank">Register Now</a>
+                        {% endif %}
+                        <a href="{% url 'website:events' %}" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No upcoming events at the moment. Check back soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'website:events' %}" class="btn btn-primary">View All Events</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-accent text-white py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Transform Your Digital Experience?</h2>
+        <p class="lead mb-4">Contact us today to discuss how our AI-powered solutions can help your business.</p>
+        <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Get in Touch</a>
+    </div>
+</section>
+{% endblock %}

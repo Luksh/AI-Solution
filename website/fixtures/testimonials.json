@@ -1,0 +1,106 @@
+[
+  {
+    "model": "website.testimonial",
+    "pk": 1,
+    "fields": {
+      "customer_name": "Sarah Johnson",
+      "company": "GlobalRetail Inc.",
+      "position": "Chief Operations Officer",
+      "testimonial": "The AI-powered inventory management solution from AI-Solution has completely transformed our retail operations. We've seen dramatic reductions in stockouts and excess inventory, directly improving our bottom line. The team's expertise and support throughout implementation and beyond has been exceptional.",
+      "rating": 5,
+      "image": "testimonials/sarah_johnson.jpg",
+      "date": "2023-08-15"
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 2,
+    "fields": {
+      "customer_name": "Dr. Michael Chen",
+      "company": "MediTech Healthcare",
+      "position": "Director of Radiology",
+      "testimonial": "As healthcare professionals, we were initially skeptical about AI assistance in medical imaging. However, the computer vision solution has proven to be an invaluable tool for our radiologists. It has significantly reduced our diagnostic time while improving accuracy. Most importantly, it allows our specialists to focus on the most complex cases where their expertise is truly needed.",
+      "rating": 5,
+      "image": "testimonials/michael_chen.jpg",
+      "date": "2023-09-20"
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 3,
+    "fields": {
+      "customer_name": "Jennifer Martinez",
+      "company": "TechServe Solutions",
+      "position": "Customer Support Director",
+      "testimonial": "The NLP platform has revolutionized our customer support operations. Not only have we reduced response times dramatically, but the quality of our support has improved as well. Our team members now have more time to handle complex issues that require a human touch, while the AI handles routine inquiries efficiently.",
+      "rating": 4,
+      "image": "testimonials/jennifer_martinez.jpg",
+      "date": "2023-10-05"
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 4,
+    "fields": {
+      "customer_name": "Robert Thompson",
+      "company": "IndustrialTech Manufacturing",
+      "position": "Plant Manager",
+      "testimonial": "The predictive maintenance solution has been a game-changer for our manufacturing facility. Before implementation, unexpected downtime was costing us hundreds of thousands of dollars. Now, we can plan maintenance activities with minimal disruption to production. The ROI on this investment was achieved within the first six months.",
+      "rating": 5,
+      "image": "testimonials/robert_thompson.jpg",
+      "date": "2023-11-12"
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 5,
+    "fields": {
+      "customer_name": "Amanda Wilson",
+      "company": "SecureBank Financial",
+      "position": "Head of Fraud Prevention",
+      "testimonial": "The AI-based fraud detection system has transformed our approach to security. We're now able to identify and prevent fraudulent activities with remarkable accuracy, while minimizing the impact on legitimate customers. The system's ability to continuously learn and adapt to new fraud patterns has been particularly valuable in our rapidly evolving threat landscape.",
+      "rating": 5,
+      "image": "testimonials/amanda_wilson.jpg",
+      "date": "2023-12-08"
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 6,
+    "fields": {
+      "customer_name": "David Rodriguez",
+      "company": "Global Logistics Corp",
+      "position": "Supply Chain Director",
+      "testimonial": "The intelligent supply chain platform has provided us with unprecedented visibility and control over our global operations. The real-time optimization capabilities have helped us navigate supply chain disruptions that would have previously caused significant delays and costs. The AI-Solution team truly understands the complexities of modern logistics.",
+      "rating": 4,
+      "image": "testimonials/david_rodriguez.jpg",
+      "date": "2024-01-15"
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 7,
+    "fields": {
+      "customer_name": "Emily Parker",
+      "company": "RetailTech Innovations",
+      "position": "CTO",
+      "testimonial": "We integrated the AI-Solution's customer experience platform into our retail technology stack, and the results have been outstanding. The personalization engine has significantly improved our conversion rates and customer retention. The technical team was exceptional in ensuring seamless integration with our existing systems.",
+      "rating": 5,
+      "image": "testimonials/emily_parker.jpg",
+      "date": "2024-02-20"
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 8,
+    "fields": {
+      "customer_name": "James Wilson",
+      "company": "AgriTech Solutions",
+      "position": "Innovation Director",
+      "testimonial": "The AI-powered predictive analytics solution has revolutionized how we approach agricultural planning and resource allocation. By accurately predicting weather patterns, crop yields, and market demands, we've been able to optimize our operations and significantly reduce waste. The team's understanding of both AI and agriculture made the implementation process smooth and effective.",
+      "rating": 4,
+      "image": "testimonials/james_wilson.jpg",
+      "date": "2024-03-10"
+    }
+  }
+]

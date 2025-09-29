@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard - AI-Solution{% endblock %}
+
+{% block extra_css %}
+<style>
+    .inquiry-card {
+        transition: all 0.3s ease;
+    }
+    .inquiry-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+    .unread-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Admin Dashboard Header -->
+<section class="hero-section text-white py-4">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="display-5">Admin Dashboard</h1>
+                <p class="lead mb-0">Manage customer inquiries and track website activity</p>
+            </div>
+            <div>
+                <a href="{% url 'website:admin_logout' %}" class="btn btn-light">Logout</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dashboard Stats -->
+<section class="py-4">
+    <div class="container">
+        <div class="dashboard-stats">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="stat-card primary">
+                        <i class="fas fa-envelope"></i>
+                        <h3>{{ total_inquiries }}</h3>
+                        <p class="mb-0">Total Inquiries</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="stat-card warning">
+                        <i class="fas fa-envelope-open"></i>
+                        <h3>{{ unread_inquiries }}</h3>
+                        <p class="mb-0">Unread Inquiries</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card accent">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>{{ today_date|date:"F d, Y" }}</h3>
+                        <p class="mb-0">Current Date</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Inquiries Section -->
+<section class="py-4">
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white py-3">
+                <h2 class="card-title mb-0">Customer Inquiries</h2>
+            </div>
+            <div class="card-body p-0">
+                {% if inquiries %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Email</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for inquiry in inquiries %}
+                            <tr {% if not inquiry.is_read %}class="table-warning"{% endif %}>
+                                <td>{{ inquiry.name }}</td>
+                                <td>{{ inquiry.company_name }}</td>
+                                <td>{{ inquiry.email }}</td>
+                                <td>{{ inquiry.created_at|date:"M d, Y" }}</td>
+                                <td>
+                                    {% if inquiry.is_read %}
+                                    <span class="badge bg-success">Read</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">Unread</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#inquiryModal{{ inquiry.id }}">
+                                        View Details
+                                    </button>
+                                    {% if not inquiry.is_read %}
+                                    <form method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="inquiry_id" value="{{ inquiry.id }}">
+                                        <button type="submit" name="mark_read" class="btn btn-sm btn-accent">Mark as Read</button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            
+                            <!-- Modal for Inquiry Details -->
+                            <div class="modal fade" id="inquiryModal{{ inquiry.id }}" tabindex="-1" aria-labelledby="inquiryModalLabel{{ inquiry.id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title" id="inquiryModalLabel{{ inquiry.id }}">Inquiry from {{ inquiry.name }}</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <p><strong>Name:</strong> {{ inquiry.name }}</p>
+                                                    <p><strong>Email:</strong> {{ inquiry.email }}</p>
+                                                    <p><strong>Phone:</strong> {{ inquiry.phone }}</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><strong>Company:</strong> {{ inquiry.company_name }}</p>
+                                                    <p><strong>Country:</strong> {{ inquiry.country }}</p>
+                                                    <p><strong>Job Title:</strong> {{ inquiry.job_title }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h6 class="fw-bold">Job Details:</h6>
+                                                <p class="border p-3 bg-light">{{ inquiry.job_details }}</p>
+                                            </div>
+                                            <div class="text-muted">
+                                                <small>Submitted on {{ inquiry.created_at|date:"F d, Y - h:i A" }}</small>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            {% if not inquiry.is_read %}
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="inquiry_id" value="{{ inquiry.id }}">
+                                                <button type="submit" name="mark_read" class="btn btn-accent">Mark as Read</button>
+                                            </form>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="p-4 text-center">
+                    <p class="mb-0">No inquiries received yet.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Add any dashboard-specific JavaScript here
+    document.addEventListener('DOMContentLoaded', function() {
+        // Example: Auto-dismiss alerts after 5 seconds
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    });
+</script>
+{% endblock %}

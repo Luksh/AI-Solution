@@ -1,0 +1,152 @@
+[
+  {
+    "model": "website.contactinquiry",
+    "pk": 1,
+    "fields": {
+      "name": "John Smith",
+      "email": "john.smith@example.com",
+      "phone": "+1-555-123-4567",
+      "company_name": "Tech Innovations Inc.",
+      "country": "United States",
+      "job_title": "CTO",
+      "job_details": "We're interested in implementing AI-powered predictive analytics for our e-commerce platform. Looking to discuss potential solutions and implementation timeline.",
+      "is_read": true,
+      "created_at": "2023-11-10T14:30:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 2,
+    "fields": {
+      "name": "Maria Rodriguez",
+      "email": "maria.rodriguez@example.com",
+      "phone": "+34-612-345-678",
+      "company_name": "Healthcare Solutions",
+      "country": "Spain",
+      "job_title": "Innovation Director",
+      "job_details": "We're a healthcare provider looking to explore computer vision solutions for medical imaging analysis. Would like to schedule a demo and discuss potential integration with our existing systems.",
+      "is_read": true,
+      "created_at": "2023-11-15T09:45:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 3,
+    "fields": {
+      "name": "Akira Tanaka",
+      "email": "akira.tanaka@example.com",
+      "phone": "+81-3-1234-5678",
+      "company_name": "Manufacturing Excellence Ltd.",
+      "country": "Japan",
+      "job_title": "Operations Manager",
+      "job_details": "We're experiencing significant downtime due to equipment failures in our manufacturing plant. Interested in your predictive maintenance solution. Please provide information on implementation requirements and expected ROI.",
+      "is_read": true,
+      "created_at": "2023-11-22T11:20:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 4,
+    "fields": {
+      "name": "Sophie Martin",
+      "email": "sophie.martin@example.com",
+      "phone": "+33-1-23-45-67-89",
+      "company_name": "Retail Group International",
+      "country": "France",
+      "job_title": "Digital Transformation Lead",
+      "job_details": "Looking for an AI solution to enhance our customer experience across digital channels. Particularly interested in personalization and recommendation systems. Would like to discuss potential solutions and pricing.",
+      "is_read": false,
+      "created_at": "2023-12-05T15:10:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 5,
+    "fields": {
+      "name": "Michael Johnson",
+      "email": "michael.johnson@example.com",
+      "phone": "+44-20-1234-5678",
+      "company_name": "Financial Services Group",
+      "country": "United Kingdom",
+      "job_title": "Head of Security",
+      "job_details": "We're looking for an advanced fraud detection system for our banking operations. Our current rule-based system is generating too many false positives. Would like to explore how AI can improve accuracy while maintaining compliance with financial regulations.",
+      "is_read": false,
+      "created_at": "2023-12-10T08:45:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 6,
+    "fields": {
+      "name": "Priya Sharma",
+      "email": "priya.sharma@example.com",
+      "phone": "+91-98765-43210",
+      "company_name": "Global Supply Solutions",
+      "country": "India",
+      "job_title": "Supply Chain Director",
+      "job_details": "Our company manages complex supply chains across Asia. Looking for an AI solution to optimize logistics, predict potential disruptions, and improve overall efficiency. Would appreciate information on your supply chain management platform and implementation process.",
+      "is_read": false,
+      "created_at": "2023-12-15T10:30:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 7,
+    "fields": {
+      "name": "Lars Nielsen",
+      "email": "lars.nielsen@example.com",
+      "phone": "+45-12-34-56-78",
+      "company_name": "Nordic Retail Group",
+      "country": "Denmark",
+      "job_title": "Innovation Manager",
+      "job_details": "We're interested in implementing computer vision solutions for our retail stores to analyze customer behavior and optimize store layouts. Would like to discuss potential pilot projects and ROI expectations.",
+      "is_read": false,
+      "created_at": "2023-12-20T13:15:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 8,
+    "fields": {
+      "name": "Carlos Mendoza",
+      "email": "carlos.mendoza@example.com",
+      "phone": "+52-55-1234-5678",
+      "company_name": "Agro Industries",
+      "country": "Mexico",
+      "job_title": "Agricultural Operations Director",
+      "job_details": "We're looking to implement AI solutions for crop monitoring, yield prediction, and resource optimization across our agricultural operations. Interested in discussing how your predictive analytics can be applied to agriculture.",
+      "is_read": false,
+      "created_at": "2023-12-28T09:20:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 9,
+    "fields": {
+      "name": "Emma Wilson",
+      "email": "emma.wilson@example.com",
+      "phone": "+61-2-9876-5432",
+      "company_name": "Education Innovations",
+      "country": "Australia",
+      "job_title": "EdTech Director",
+      "job_details": "We develop educational technology solutions and are interested in incorporating AI for personalized learning experiences. Looking to discuss potential integration of NLP and adaptive learning algorithms into our platform.",
+      "is_read": false,
+      "created_at": "2024-01-05T16:40:00Z"
+    }
+  },
+  {
+    "model": "website.contactinquiry",
+    "pk": 10,
+    "fields": {
+      "name": "Ahmed Al-Farsi",
+      "email": "ahmed.alfarsi@example.com",
+      "phone": "+971-50-123-4567",
+      "company_name": "Smart City Developments",
+      "country": "United Arab Emirates",
+      "job_title": "Smart City Project Manager",
+      "job_details": "We're developing a smart city project and are looking for AI solutions for traffic management, energy optimization, and public safety. Would like to explore how your technologies can be integrated into our urban planning initiatives.",
+      "is_read": false,
+      "created_at": "2024-01-12T11:30:00Z"
+    }
+  }
+]

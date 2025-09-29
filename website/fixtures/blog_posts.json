@@ -1,0 +1,82 @@
+[
+  {
+    "model": "website.blogpost",
+    "pk": 1,
+    "fields": {
+      "title": "The Future of AI in Business Intelligence",
+      "slug": "future-ai-business-intelligence",
+      "author": "John Smith",
+      "content": "<p>Artificial intelligence is revolutionizing how businesses analyze and interpret data. This post explores the latest trends in AI-powered business intelligence tools and how they're helping companies make better decisions.</p><p>From predictive analytics to natural language processing, AI technologies are making it easier for organizations of all sizes to extract valuable insights from their data without requiring specialized data science expertise.</p>",
+      "featured_image": "blog/ai_business_intelligence.jpg",
+      "category": "Artificial Intelligence",
+      "tags": "AI, Business Intelligence, Data Analytics",
+      "is_published": true,
+      "created_at": "2025-01-15T10:30:00Z",
+      "updated_at": "2025-01-15T10:30:00Z"
+    }
+  },
+  {
+    "model": "website.blogpost",
+    "pk": 2,
+    "fields": {
+      "title": "Machine Learning Models for Predictive Maintenance",
+      "slug": "machine-learning-predictive-maintenance",
+      "author": "Sarah Johnson",
+      "content": "<p>Predictive maintenance is changing how industries approach equipment upkeep and repair. By leveraging machine learning algorithms, companies can now predict when machinery is likely to fail before it happens.</p><p>This post examines several case studies where predictive maintenance has significantly reduced downtime and maintenance costs across manufacturing, energy, and transportation sectors.</p>",
+      "featured_image": "blog/predictive_maintenance.jpg",
+      "category": "Machine Learning",
+      "tags": "Machine Learning, Predictive Maintenance, IoT",
+      "is_published": true,
+      "created_at": "2025-02-03T14:45:00Z",
+      "updated_at": "2025-02-03T14:45:00Z"
+    }
+  },
+  {
+    "model": "website.blogpost",
+    "pk": 3,
+    "fields": {
+      "title": "Implementing Natural Language Processing in Customer Service",
+      "slug": "nlp-customer-service",
+      "author": "Michael Chen",
+      "content": "<p>Natural Language Processing (NLP) is transforming customer service operations by enabling more efficient and personalized interactions. From chatbots to sentiment analysis, NLP technologies are helping businesses better understand and respond to customer needs.</p><p>This article explores practical applications of NLP in customer service and provides guidance on implementing these solutions in your organization.</p>",
+      "featured_image": "blog/nlp_customer_service.jpg",
+      "category": "Natural Language Processing",
+      "tags": "NLP, Customer Service, AI Applications",
+      "is_published": true,
+      "created_at": "2025-02-18T09:15:00Z",
+      "updated_at": "2025-02-18T09:15:00Z"
+    }
+  },
+  {
+    "model": "website.blogpost",
+    "pk": 4,
+    "fields": {
+      "title": "Computer Vision Applications in Healthcare",
+      "slug": "computer-vision-healthcare",
+      "author": "Dr. Emily Rodriguez",
+      "content": "<p>Computer vision technology is making significant contributions to healthcare, from diagnostic imaging to surgical assistance. This post examines how AI-powered image recognition is improving patient outcomes and streamlining clinical workflows.</p><p>We'll look at recent advancements in medical imaging analysis, disease detection, and how these technologies are augmenting the capabilities of healthcare professionals rather than replacing them.</p>",
+      "featured_image": "blog/computer_vision_healthcare.jpg",
+      "category": "Computer Vision",
+      "tags": "Computer Vision, Healthcare, Medical Imaging",
+      "is_published": true,
+      "created_at": "2025-03-05T11:20:00Z",
+      "updated_at": "2025-03-05T11:20:00Z"
+    }
+  },
+  {
+    "model": "website.blogpost",
+    "pk": 5,
+    "fields": {
+      "title": "Ethical Considerations in AI Development",
+      "slug": "ethical-considerations-ai-development",
+      "author": "Alex Thompson",
+      "content": "<p>As artificial intelligence becomes more integrated into our daily lives, ethical considerations around its development and deployment are increasingly important. This post discusses key ethical challenges in AI, including bias, transparency, privacy, and accountability.</p><p>We explore frameworks for responsible AI development and how organizations can ensure their AI initiatives align with ethical principles and societal values.</p>",
+      "featured_image": "blog/ai_ethics.jpg",
+      "category": "AI Ethics",
+      "tags": "AI Ethics, Responsible AI, Technology Ethics",
+      "is_published": false,
+      "created_at": "2025-03-20T15:30:00Z",
+      "updated_at": "2025-03-20T15:30:00Z"
+    }
+  }
+]

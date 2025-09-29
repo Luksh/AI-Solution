@@ -1,0 +1,146 @@
+[
+  {
+    "model": "website.galleryimage",
+    "pk": 1,
+    "fields": {
+      "title": "AI Innovation Summit 2023 - Keynote",
+      "description": "Our CEO delivering the opening keynote at the AI Innovation Summit, discussing the future of AI in business transformation.",
+      "image": "gallery/ai_summit_keynote.jpg",
+      "category": "Events",
+      "event_name": "AI Innovation Summit 2023",
+      "date": "2023-06-15"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 2,
+    "fields": {
+      "title": "AI Innovation Summit 2023 - Panel Discussion",
+      "description": "Industry experts discussing ethical considerations in AI development during our panel session.",
+      "image": "gallery/ai_summit_panel.jpg",
+      "category": "Events",
+      "event_name": "AI Innovation Summit 2023",
+      "date": "2023-06-15"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 3,
+    "fields": {
+      "title": "AI Innovation Summit 2023 - Workshop",
+      "description": "Participants engaging in our hands-on workshop on implementing computer vision solutions.",
+      "image": "gallery/ai_summit_workshop.jpg",
+      "category": "Events",
+      "event_name": "AI Innovation Summit 2023",
+      "date": "2023-06-16"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 4,
+    "fields": {
+      "title": "Healthcare AI Symposium - Demonstration",
+      "description": "Live demonstration of our medical imaging analysis solution at the Healthcare AI Symposium.",
+      "image": "gallery/healthcare_demo.jpg",
+      "category": "Events",
+      "event_name": "Healthcare AI Symposium",
+      "date": "2023-07-20"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 5,
+    "fields": {
+      "title": "Team Building Retreat",
+      "description": "Our team during the annual retreat, focusing on innovation and collaboration.",
+      "image": "gallery/team_retreat.jpg",
+      "category": "Team",
+      "event_name": "Annual Team Retreat 2023",
+      "date": "2023-08-05"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 6,
+    "fields": {
+      "title": "R&D Lab - Computer Vision Research",
+      "description": "Our research team working on next-generation computer vision algorithms in our AI lab.",
+      "image": "gallery/rd_lab_cv.jpg",
+      "category": "Research",
+      "event_name": "Research & Development",
+      "date": "2023-09-12"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 7,
+    "fields": {
+      "title": "Manufacturing AI Expo - Booth",
+      "description": "Our exhibition booth at the Manufacturing AI Expo, showcasing predictive maintenance solutions.",
+      "image": "gallery/manufacturing_expo_booth.jpg",
+      "category": "Events",
+      "event_name": "Manufacturing AI Expo",
+      "date": "2023-09-25"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 8,
+    "fields": {
+      "title": "Client Implementation - GlobalRetail",
+      "description": "Our team working with GlobalRetail staff during the implementation of our inventory management solution.",
+      "image": "gallery/client_implementation.jpg",
+      "category": "Projects",
+      "event_name": "GlobalRetail Implementation",
+      "date": "2023-10-10"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 9,
+    "fields": {
+      "title": "Hackathon Winners",
+      "description": "The winning team from our internal AI hackathon, developing an innovative solution for sustainable energy management.",
+      "image": "gallery/hackathon_winners.jpg",
+      "category": "Team",
+      "event_name": "AI Innovation Hackathon",
+      "date": "2023-11-05"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 10,
+    "fields": {
+      "title": "Retail AI Conference - Presentation",
+      "description": "Our retail solutions director presenting case studies at the Retail AI Conference.",
+      "image": "gallery/retail_conference_presentation.jpg",
+      "category": "Events",
+      "event_name": "Retail AI Conference",
+      "date": "2023-11-18"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 11,
+    "fields": {
+      "title": "Community Outreach - AI Education",
+      "description": "Our team conducting an AI workshop for high school students as part of our community outreach program.",
+      "image": "gallery/community_outreach.jpg",
+      "category": "Community",
+      "event_name": "AI Education Initiative",
+      "date": "2023-12-08"
+    }
+  },
+  {
+    "model": "website.galleryimage",
+    "pk": 12,
+    "fields": {
+      "title": "Year-End Celebration",
+      "description": "Our team celebrating a successful year of innovation and growth.",
+      "image": "gallery/year_end_celebration.jpg",
+      "category": "Team",
+      "event_name": "Annual Celebration",
+      "date": "2023-12-22"
+    }
+  }
+]

@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Solutions - AI-Solution{% endblock %}
+
+{% block content %}
+<!-- Solutions Header -->
+<section class="hero-section text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4">Our Software Solutions</h1>
+        <p class="lead">Discover how our AI-powered solutions can transform your business</p>
+    </div>
+</section>
+
+<!-- Solutions Overview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title">How We Can Help</h2>
+                <p class="lead">AI-Solution leverages artificial intelligence to assist various industries with innovative software solutions.</p>
+                <p>Our solutions are designed to rapidly and proactively address issues that can impact the digital employee experience, thus speeding up design, engineering, and innovation. We integrate AI-powered virtual assistants that respond to users' inquiries and provide affordable prototyping solutions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solutions List -->
+<section class="bg-gray py-5">
+    <div class="container">
+        <div class="row">
+            {% for solution in solutions %}
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="row g-0">
+                        <div class="col-md-5">
+                            {% if solution.image %}
+                            <img src="{{ solution.image.url }}" class="img-fluid rounded-start h-100" alt="{{ solution.title }}" style="object-fit: cover;">
+                            {% else %}
+                            <img src="{% static 'images/solution-placeholder.jpg' %}" class="img-fluid rounded-start h-100" alt="{{ solution.title }}" style="object-fit: cover;">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ solution.title }}</h3>
+                                <p class="card-text">{{ solution.description|truncatewords:25 }}</p>
+                                <h5 class="mt-3">Key Features:</h5>
+                                <p class="card-text">{{ solution.features|truncatewords:15 }}</p>
+                                <a href="{% url 'website:solution_detail' solution.slug %}" class="btn btn-primary mt-3">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <p class="mb-0">No solutions available at the moment. Check back soon!</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Industries We Serve -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Industries We Serve</h2>
+            <p class="lead">Our AI solutions are tailored for various industries</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-hospital text-accent fa-3x mb-3"></i>
+                        <h4 class="card-title">Healthcare</h4>
+                        <p class="card-text">Improving patient care with AI-driven diagnostics and workflow optimization.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-university text-accent fa-3x mb-3"></i>
+                        <h4 class="card-title">Finance</h4>
+                        <p class="card-text">Enhancing financial services with fraud detection and automated customer support.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-industry text-accent fa-3x mb-3"></i>
+                        <h4 class="card-title">Manufacturing</h4>
+                        <p class="card-text">Optimizing production processes with predictive maintenance and quality control.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-shopping-cart text-accent fa-3x mb-3"></i>
+                        <h4 class="card-title">Retail</h4>
+                        <p class="card-text">Personalizing customer experiences and optimizing inventory management.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-graduation-cap text-accent fa-3x mb-3"></i>
+                        <h4 class="card-title">Education</h4>
+                        <p class="card-text">Transforming learning with personalized education and administrative efficiency.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-truck text-accent fa-3x mb-3"></i>
+                        <h4 class="card-title">Logistics</h4>
+                        <p class="card-text">Streamlining supply chains with route optimization and demand forecasting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-accent text-white py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Transform Your Business?</h2>
+        <p class="lead mb-4">Contact us today to discuss how our AI-powered solutions can help your specific industry.</p>
+        <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Get in Touch</a>
+    </div>
+</section>
+{% endblock %}

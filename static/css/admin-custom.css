@@ -1,0 +1,70 @@
+/* Custom CSS for Admin Login Page */
+
+.login-box {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border-top: 3px solid #3498DB;
+}
+
+.login-logo {
+    margin-bottom: 30px;
+}
+
+.login-logo img {
+    max-height: 100px;
+    margin-bottom: 10px;
+}
+
+.login-box-msg {
+    font-weight: 500;
+    color: #2C3E50;
+}
+
+.btn-primary {
+    background-color: #3498DB !important;
+    border-color: #3498DB !important;
+}
+
+.btn-primary:hover {
+    background-color: #2980B9 !important;
+    border-color: #2980B9 !important;
+}
+
+.login-page {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+}
+
+.form-control {
+    border-left: none;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.login-card-body {
+    padding: 30px;
+}
+
+.login-box-msg {
+    padding-bottom: 20px;
+}
+
+/* AI-Solution branding colors */
+.text-primary {
+    color: #3498DB !important;
+}
+
+.text-secondary {
+    color: #2C3E50 !important;
+}
+
+.text-accent {
+    color: #1ABC9C !important;
+}

@@ -1,0 +1,14 @@
+/* Custom admin styles */
+
+/* Control logo size on login/logout pages */
+.login-logo img, 
+.logout-logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Additional styling for logout page */
+.logout-page .brand-image {
+    max-width: 200px;
+    height: auto;
+}

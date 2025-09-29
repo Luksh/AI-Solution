@@ -1,0 +1,7 @@
+new_venv/
+db.sqlite3
+.vscode/
+ai_solution/settings.py
+website/gemini_chat.py
+__pycache__/
+*.pyc

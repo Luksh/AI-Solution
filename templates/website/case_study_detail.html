@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ case_study.title }} - AI-Solution{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="bg-light py-2">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'website:home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'website:case_studies' %}">Case Studies</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ case_study.title }}</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Case Study Hero -->
+<section class="py-5 bg-gradient">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <span class="badge bg-primary mb-2">{{ case_study.industry }}</span>
+                <h1 class="display-4 mb-3">{{ case_study.title }}</h1>
+                <p class="lead mb-4">{{ case_study.client_name }}</p>
+                <div class="d-flex align-items-center">
+                    <div class="bg-success rounded-circle p-2 me-3">
+                        <i class="fas fa-check text-white"></i>
+                    </div>
+                    <p class="mb-0 text-success fw-bold">Successful Implementation</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="position-relative rounded-3 overflow-hidden shadow">
+                    {% if case_study.image %}
+                    <img src="{{ case_study.image.url }}" alt="{{ case_study.title }}" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
+                    {% else %}
+                    <img src="{% static 'images/case-study-placeholder.jpg' %}" alt="{{ case_study.title }}" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
+                    {% endif %}
+                    <div class="position-absolute bottom-0 start-0 w-100 bg-dark bg-opacity-75 text-white p-3">
+                        <p class="mb-0"><i class="fas fa-quote-left me-2"></i>{{ case_study.challenge|truncatechars:100 }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Study Overview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <!-- Challenge Section -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-danger rounded-circle p-3 me-3">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </div>
+                            <h2 class="mb-0">The Challenge</h2>
+                        </div>
+                        <p class="lead">{{ case_study.challenge }}</p>
+                    </div>
+                </div>
+                
+                <!-- Solution Section -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-primary rounded-circle p-3 me-3">
+                                <i class="fas fa-lightbulb text-white"></i>
+                            </div>
+                            <h2 class="mb-0">Our Solution</h2>
+                        </div>
+                        <p class="lead">{{ case_study.solution }}</p>
+                        
+                        <!-- Solution Highlights -->
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <div class="bg-light rounded-circle p-3">
+                                            <i class="fas fa-cogs text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Custom Implementation</h5>
+                                        <p>Tailored to client's specific needs and existing systems</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <div class="bg-light rounded-circle p-3">
+                                            <i class="fas fa-chart-line text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Data-Driven Approach</h5>
+                                        <p>Leveraging analytics to optimize performance</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <div class="bg-light rounded-circle p-3">
+                                            <i class="fas fa-users text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Collaborative Process</h5>
+                                        <p>Working closely with client teams for seamless integration</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <div class="bg-light rounded-circle p-3">
+                                            <i class="fas fa-rocket text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5>Rapid Deployment</h5>
+                                        <p>Minimizing disruption to business operations</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results Section -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-success rounded-circle p-3 me-3">
+                                <i class="fas fa-chart-bar text-white"></i>
+                            </div>
+                            <h2 class="mb-0">The Results</h2>
+                        </div>
+                        <p class="lead">{{ case_study.results }}</p>
+                        
+                        <!-- Key Metrics -->
+                        <div class="row mt-4 text-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="p-4 bg-light rounded-3">
+                                    <h2 class="text-primary mb-0">40%</h2>
+                                    <p class="mb-0">Increase in Efficiency</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="p-4 bg-light rounded-3">
+                                    <h2 class="text-primary mb-0">30%</h2>
+                                    <p class="mb-0">Cost Reduction</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="p-4 bg-light rounded-3">
+                                    <h2 class="text-primary mb-0">25%</h2>
+                                    <p class="mb-0">Revenue Growth</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial -->
+                <div class="card border-0 bg-light shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-quote-left fa-3x text-primary opacity-25"></i>
+                            </div>
+                            <div class="ms-4">
+                                <p class="lead fst-italic mb-3">The AI solution provided by the team has transformed our business operations. We've seen remarkable improvements in efficiency and customer satisfaction.</p>
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-white p-2 me-3">
+                                        <i class="fas fa-user text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0">Client Representative</h5>
+                                        <p class="mb-0 text-muted">{{ case_study.client_name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Project Info -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Project Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span><i class="fas fa-building me-2 text-primary"></i> Client:</span>
+                                <span class="fw-bold">{{ case_study.client_name }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span><i class="fas fa-industry me-2 text-primary"></i> Industry:</span>
+                                <span class="fw-bold">{{ case_study.industry }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span><i class="fas fa-calendar-alt me-2 text-primary"></i> Completed:</span>
+                                <span class="fw-bold">{{ case_study.created_at|date:"F Y" }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span><i class="fas fa-clock me-2 text-primary"></i> Duration:</span>
+                                <span class="fw-bold">3 months</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Interested in similar results?</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Contact us to discuss how we can help your business achieve similar success.</p>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Company Name">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="3" placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Request Information</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Share -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Share This Case Study</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="btn btn-outline-primary"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="btn btn-outline-primary"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="btn btn-outline-primary"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Case Studies -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Related Case Studies</h2>
+        
+        <div class="row g-4">
+            {% for related in related_case_studies %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="position-relative">
+                        {% if related.image %}
+                        <img src="{{ related.image.url }}" class="card-img-top" alt="{{ related.title }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                        <img src="{% static 'images/case-study-placeholder.jpg' %}" class="card-img-top" alt="{{ related.title }}" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="position-absolute top-0 end-0 bg-primary text-white px-3 py-2 rounded-bottom-start">
+                            {{ related.industry }}
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title">{{ related.title }}</h4>
+                        <p class="text-muted mb-2">{{ related.client_name }}</p>
+                        <p class="card-text flex-grow-1">{{ related.challenge|truncatechars:100 }}</p>
+                        <a href="{% url 'website:case_study_detail' related.id %}" class="btn btn-primary mt-3">View Case Study</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to transform your business with AI?</h2>
+        <p class="lead mb-4">Let's discuss how our solutions can address your specific challenges</p>
+        <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Contact Us Today</a>
+    </div>
+</section>
+{% endblock %}
