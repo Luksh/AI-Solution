@@ -125,10 +125,10 @@
                     
                     <div class="card-footer bg-white border-0 pt-0">
                         <div class="d-grid gap-2">
-                            {% if event.registration_link %}
-                            <a href="{{ event.registration_link }}" class="btn btn-accent" target="_blank">Register Now</a>
+                            {% if event.is_upcoming %}
+                            <button class="btn btn-accent register-btn" data-bs-toggle="modal" data-bs-target="#registerModal" data-event-id="{{ event.id }}" data-event-title="{{ event.title }}">Register Now</button>
                             {% else %}
-                            <button class="btn btn-outline-primary" disabled>Registration Coming Soon</button>
+                            <button class="btn btn-outline-primary" disabled>Event Completed</button>
                             {% endif %}
                         </div>
                     </div>

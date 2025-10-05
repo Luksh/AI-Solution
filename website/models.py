@@ -33,6 +33,9 @@ class CaseStudy(models.Model):
     
     def __str__(self):
         return f"{self.title} - {self.client_name}"
+    
+    class Meta:
+        verbose_name_plural = "Case Studies"
 
 class Testimonial(models.Model):
     """Model for customer testimonials with ratings"""
@@ -43,6 +46,7 @@ class Testimonial(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     image = models.ImageField(upload_to='testimonials/', blank=True, null=True)
     date = models.DateField(default=timezone.now)
+    is_approved = models.BooleanField(default=False, help_text="Testimonial needs admin approval before being displayed")
     
     def __str__(self):
         return f"{self.customer_name} - {self.company}"

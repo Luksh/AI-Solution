@@ -12,7 +12,7 @@ from .models import (
     Event, 
     ContactInquiry
 )
-from .forms import ContactForm, LoginForm
+from .forms import ContactForm, LoginForm, TestimonialForm
 from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -60,7 +60,7 @@ def home(request):
     """View for the homepage"""
     # Get featured content for the homepage
     solutions = SoftwareSolution.objects.all()[:3]
-    testimonials = Testimonial.objects.all().order_by('-date')[:3]
+    testimonials = Testimonial.objects.filter(is_approved=True).order_by('-date')[:3]
     case_studies = CaseStudy.objects.all()[:2]
     featured_events = Event.objects.filter(is_featured=True).order_by('date')[:2]
     
@@ -92,7 +92,7 @@ def solution_detail(request, slug):
 def case_studies(request):
     """View for case studies/past solutions page"""
     case_studies = CaseStudy.objects.all()
-    testimonials = Testimonial.objects.all().order_by('-date')[:3]
+    testimonials = Testimonial.objects.filter(is_approved=True).order_by('-date')[:3]
     return render(request, 'website/case_studies.html', {
         'case_studies': case_studies,
         'testimonials': testimonials
@@ -111,9 +111,24 @@ def case_study_detail(request, id):
     return render(request, 'website/case_study_detail.html', context)
 
 def testimonials(request):
-    """View for testimonials page"""
-    testimonials = Testimonial.objects.all().order_by('-date')
-    return render(request, 'website/testimonials.html', {'testimonials': testimonials})
+    """View for testimonials page with form submission"""
+    testimonials = Testimonial.objects.filter(is_approved=True).order_by('-date')
+    
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST, request.FILES)
+        if form.is_valid():
+            testimonial = form.save()
+            messages.success(request, 'Thank you for sharing your experience! Your testimonial has been submitted and will be reviewed before publishing.')
+            return redirect('website:testimonials')
+        else:
+            messages.error(request, 'Please correct the errors below and try again.')
+    else:
+        form = TestimonialForm()
+    
+    return render(request, 'website/testimonials.html', {
+        'testimonials': testimonials,
+        'form': form
+    })
 
 def blog(request):
     """View for blog page"""

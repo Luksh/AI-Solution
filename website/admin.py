@@ -49,16 +49,16 @@ class CaseStudyAdmin(admin.ModelAdmin):
 
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
-    list_display = ('customer_name', 'company', 'position', 'rating', 'date')
+    list_display = ('customer_name', 'company', 'position', 'rating', 'date', 'is_approved')
     search_fields = ('customer_name', 'company', 'testimonial')
-    list_filter = ('rating', 'date')
-    list_editable = ('rating',)
+    list_filter = ('rating', 'date', 'is_approved')
+    list_editable = ('rating', 'is_approved')
     fieldsets = (
         (None, {
             'fields': ('customer_name', 'company', 'position', 'image')
         }),
         ('Testimonial Details', {
-            'fields': ('testimonial', 'rating', 'date')
+            'fields': ('testimonial', 'rating', 'date', 'is_approved')
         }),
     )
 

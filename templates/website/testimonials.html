@@ -117,6 +117,95 @@
     </div>
 </section>
 
+<!-- Share Your Experience Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Share Your Experience</h2>
+            <p class="lead">Have you worked with us? We'd love to hear about your experience!</p>
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#testimonialModal">
+                <i class="fas fa-star me-2"></i>Share Your Experience
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Form Modal -->
+<div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="testimonialModalLabel">
+                    <i class="fas fa-star text-warning me-2"></i>Share Your Experience
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.customer_name.id_for_label }}" class="form-label">{{ form.customer_name.label }}</label>
+                            {{ form.customer_name }}
+                            {% if form.customer_name.errors %}
+                                <div class="text-danger small">{{ form.customer_name.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.company.id_for_label }}" class="form-label">{{ form.company.label }}</label>
+                            {{ form.company }}
+                            {% if form.company.errors %}
+                                <div class="text-danger small">{{ form.company.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.position.id_for_label }}" class="form-label">{{ form.position.label }}</label>
+                            {{ form.position }}
+                            {% if form.position.errors %}
+                                <div class="text-danger small">{{ form.position.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.rating.id_for_label }}" class="form-label">{{ form.rating.label }}</label>
+                            {{ form.rating }}
+                            {% if form.rating.errors %}
+                                <div class="text-danger small">{{ form.rating.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.testimonial.id_for_label }}" class="form-label">{{ form.testimonial.label }}</label>
+                        {{ form.testimonial }}
+                        {% if form.testimonial.errors %}
+                            <div class="text-danger small">{{ form.testimonial.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.image.id_for_label }}" class="form-label">{{ form.image.label }}</label>
+                        {{ form.image }}
+                        {% if form.image.errors %}
+                            <div class="text-danger small">{{ form.image.errors.0 }}</div>
+                        {% endif %}
+                        <div class="form-text">Upload your photo to personalize your testimonial (optional)</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-2"></i>Submit Testimonial
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Call to Action -->
 <section class="bg-accent text-white py-5">
     <div class="container text-center">
@@ -125,4 +214,27 @@
         <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Get in Touch</a>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle form submission
+    const testimonialForm = document.querySelector('#testimonialModal form');
+    const testimonialModal = new bootstrap.Modal(document.getElementById('testimonialModal'));
+    
+    // If there are form errors, show the modal
+    {% if form.errors %}
+        testimonialModal.show();
+    {% endif %}
+    
+    // Close modal on successful submission (handled by redirect in view)
+    testimonialForm.addEventListener('submit', function(e) {
+        // Form will be submitted normally, but we can add loading states here if needed
+        const submitBtn = this.querySelector('button[type="submit"]');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Submitting...';
+        submitBtn.disabled = true;
+    });
+});
+</script>
 {% endblock %}
