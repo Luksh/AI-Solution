@@ -3,6 +3,8 @@
 {% load static %}
 
 <link rel="shortcut icon" href="{% static 'images/logo2.png' %}">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 {% block content %}
 <div class="login-container">
@@ -30,6 +32,12 @@
                 {{ form.password }}
             </div>
             <button type="submit" class="login-button">Login</button>
+            <div class="forgot-password-container">
+                <a href="{% url 'admin_password_reset' %}" class="forgot-password-link">
+                    <i class="fas fa-key"></i>
+                    Forgot your password?
+                </a>
+            </div>
         </form>
     </div>
 </div>
@@ -135,6 +143,39 @@ body {
     border-radius: 6px;
     margin-bottom: 1.5rem;
     text-align: center;
+}
+
+.forgot-password-container {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.forgot-password-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.forgot-password-link:hover {
+    color: var(--accent-light);
+    background-color: rgba(23, 162, 184, 0.1);
+    border-color: rgba(23, 162, 184, 0.2);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.forgot-password-link i {
+    font-size: 0.8rem;
 }
 </style>
 {% endblock %}
